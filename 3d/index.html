@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>3d visualisation</title>
+</head>
+<body>
+	<script type="text/javascript" src="three.js"></script>
+	<script type="text/javascript" src="OrbitControls.js"></script>
+	<script>
+		const scene = new THREE.Scene();
+		const fov = 7050;
+		const aspectRatio = window.innerWidth / window.innerHeight;
+		const near = 0.1;
+		const far = 1000;
+		const camera = new THREE.PerspectiveCamera(fov, aspectRatio, near, far);
+		const renderer = new THREE.WebGLRenderer({ antialias: true });
+
+		renderer.setSize(window.innerWidth, window.innerHeight);
+		renderer.setClearColor('#8f93c5');
+		console.log(renderer);
+		document.body.prepend(renderer.domElement);
+
+		const controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+		const geometry = new THREE.CircleGeometry( 5, 32 );
+		const material = new THREE.MeshPhongMaterial( { color: 'blue' } );
+		const circle = new THREE.Mesh( geometry, material );
+		scene.add( circle );
+
+		controls.update();
+
+		circle.scale.set(8, 8, 8);
+		circle.rotation.x = 1;
+		circle.rotation.z = 1;
+		circle.rotation.y = 1;
+		
+		
+
+		camera.position.z = 50;
+
+		const color = '000fdd';
+		const intensity = 0.5;
+		const light = new THREE.DirectionalLight(color, intensity);
+
+		light.position.set(-1, 2, 4);
+		scene.add( light );
+
+		function animation() {
+			requestAnimationFrame(animation);
+
+			renderer.render(scene, camera);
+
+			circle.rotation.x += 0.01;
+			circle.rotation.y += 0.01;
+
+			controls.update();
+		}
+		animation();
+	</script>
+</body>
+</html>

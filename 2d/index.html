@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<canvas id="canvas" width="800" height="800"></canvas>
+	<script>
+		const canvas = document.getElementById("canvas");
+		const ctx = canvas.getContext("2d");
+
+			function snowmanCircle(x, y, radius, circle) {
+				ctx.beginPath();
+				ctx.arc(x, y, radius, 0, circle * Math.PI, false);
+				ctx.fill();	
+			}
+
+			ctx.fillStyle = "rgb(255, 244, 189)";
+			snowmanCircle(200, 150, 50, 2); // head
+
+			ctx.fillStyle = "black";
+			snowmanCircle(180, 130, 5, 2); //left eye
+			snowmanCircle(220, 130, 5, 2); // right eye
+			snowmanCircle(200, 150, 5, 2); // nose
+
+			ctx.fillStyle = "white";
+			snowmanCircle(200, 160, 30, 1); // smile
+
+			ctx.fillStyle = "rgb(255, 244, 189)";
+			snowmanCircle(200, 280, 80, 2); // second ball
+
+			ctx.fillStyle = "black";
+			snowmanCircle(200, 240, 10, 2); // first-button
+			snowmanCircle(200, 280, 10, 2); // second-button
+			snowmanCircle(200, 320, 10, 2); // third-button
+
+			ctx.fillStyle = "rgb(255, 244, 189)";
+			snowmanCircle(200, 460, 100, 2); // third ball
+			snowmanCircle(115, 560, 30, 2); // left leg
+			snowmanCircle(285, 560, 30, 2); //right leg
+
+			function hands(x, y, z, j){
+				ctx.beginPath();
+				ctx.moveTo(x, y);
+				ctx.lineTo(z, j);
+				ctx.stroke();
+			}
+
+			hands(120, 270, 80, 230); // left hand
+			hands(280, 270, 320, 230); // right hand
+
+			//hat
+			
+			ctx.beginPath();
+
+			ctx.moveTo(145, 100);
+			ctx.lineTo(175, 60);
+			ctx.lineTo(225, 60);
+			ctx.lineTo(255, 100);
+			ctx.lineTo(145,100);
+
+			ctx.stroke();	
+			
+
+		
+	</script>
+</body>
+</html>
